@@ -9,6 +9,12 @@ import android.os.IBinder
 
 class PlayerService : Service() {
 
+    private lateinit var player: MediaPlayer
+
+    private var songs: List<Song> = listSong
+
+    //current position
+    private var songPosn = 0
 
 
 
