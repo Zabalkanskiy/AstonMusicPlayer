@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AstonMusicPlayer</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="play_button">play button</string>
+    <string name="right_arrow_button">right arrow button</string>
+    <string name="left_arrow_button">left arrow button</string>
+    <string name="stop_button">stop button</string>
+    <string name="change_the_track">Change the Track and click play button for play Song</string>
 </resources>
