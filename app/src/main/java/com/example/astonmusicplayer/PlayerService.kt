@@ -46,22 +46,18 @@ class PlayerService : Service() {
 
               //  }
                 NEXT_TRACK_ACTION ->{
-                    songPosn = (songPosn +1) % listSong.size
+                    val numberTrack = intent.getIntExtra(NUMBER_TRACK, 0)
+                   // numberTrack = numberTrack  % listSong.size
                     stopMusic()
-                    playMusic(songPosn)
+                    playMusic(numberTrack)
 
                 }
                 PREVIOUS_TRACK_ACTION -> {
-                    songPosn = (songPosn -1)
-                    if(songPosn >= 0) {
-                        stopMusic()
-                        playMusic(songPosn)
-                    } else {
-                        songPosn = listSong.size - 1
-                        stopMusic()
-                        playMusic(songPosn)
+                    val numberTrack = intent.getIntExtra(NUMBER_TRACK, 0)
 
-                    }
+                        stopMusic()
+                        playMusic(numberTrack)
+
 
                 }
             }

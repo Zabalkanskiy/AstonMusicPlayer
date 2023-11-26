@@ -10,6 +10,7 @@ import com.example.astonmusicplayer.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+    var playButtonPressed = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -49,12 +50,23 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.leftArrowButton.setOnClickListener {
-            val intentForBroadcasPrevious = Intent(PREVIOUS_TRACK_ACTION)
-            sendBroadcast(intentForBroadcasPrevious)
+            var newNumber = playerViewModel.getNumberSong()  - 1
 
+            if(newNumber < 0) {
+                newNumber = listSong.size - 1
+            }
+            playerViewModel.setNumberSong(newNumber)
+            if(playButtonPressed) {
+                val intentForBroadcasPrevious = Intent(PREVIOUS_TRACK_ACTION).putExtra(
+                    NUMBER_TRACK,
+                    playerViewModel.getNumberSong()
+                )
+                sendBroadcast(intentForBroadcasPrevious)
+            }
         }
 
         binding.playButton.setOnClickListener {
+            playButtonPressed = true
 
             val intentForBroadcastPlay = Intent(PLAY_ACTION).putExtra(NUMBER_TRACK, playerViewModel.getNumberSong())
             sendBroadcast(intentForBroadcastPlay)
@@ -62,6 +74,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.stopButton.setOnClickListener {
             //  playerService.pausePlayer()
+            playButtonPressed = false
             val intentForBroadcastStop = Intent(STOP_ACTION)
             sendBroadcast(intentForBroadcastStop)
 
@@ -69,9 +82,16 @@ class MainActivity : AppCompatActivity() {
 
         binding.rightArrowButton.setOnClickListener {
             //  playerService.playNext()
-
-            val intentForBroadcastNext = Intent(NEXT_TRACK_ACTION)
-            sendBroadcast(intentForBroadcastNext)
+            var newNumber = playerViewModel.getNumberSong()  + 1
+            newNumber %= listSong.size
+            playerViewModel.setNumberSong(newNumber)
+            if (playButtonPressed) {
+                val intentForBroadcastNext = Intent(NEXT_TRACK_ACTION).putExtra(
+                    NUMBER_TRACK,
+                    playerViewModel.getNumberSong()
+                )
+                sendBroadcast(intentForBroadcastNext)
+            }
 
         }
 
