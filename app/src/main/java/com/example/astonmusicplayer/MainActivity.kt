@@ -56,6 +56,8 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Your change third song press Play button play music", Toast.LENGTH_LONG).show()
         }
 
+        binding.currentNameSong.text = listSong[0].title
+
 
         binding.leftArrowButton.setOnClickListener {
             var newNumber = playerViewModel.getNumberSong()  - 1
