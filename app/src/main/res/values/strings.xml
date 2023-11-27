@@ -6,4 +6,5 @@
     <string name="left_arrow_button">left arrow button</string>
     <string name="stop_button">stop button</string>
     <string name="change_the_track">Change the Track and click play button for play Song</string>
+    <string name="name_current_song">Name current song</string>
 </resources>

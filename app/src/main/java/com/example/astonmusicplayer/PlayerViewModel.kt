@@ -11,5 +11,9 @@ class PlayerViewModel(playerRepository: PlayerRepository) : ViewModel(){
 
     fun getNumberSong(): Int = playerRepositoryinModel.numberSong
 
+    fun getPlayButtonPressed() : Boolean = playerRepositoryinModel.playButtonPressed
 
+    fun setPlayButtonPressed( playButtonPressed: Boolean){
+        playerRepositoryinModel.playButtonPressed = playButtonPressed
+    }
 }
