@@ -16,4 +16,8 @@ class PlayerViewModel(playerRepository: PlayerRepository) : ViewModel(){
     fun setPlayButtonPressed( playButtonPressed: Boolean){
         playerRepositoryinModel.playButtonPressed = playButtonPressed
     }
+
+    fun getTitleSong(indexSong: Int): String{
+        return    playerRepositoryinModel.listSongs[indexSong].title
+    }
 }
